@@ -2,7 +2,7 @@
 
 # The Story of Us
 
-An interactive, scroll-driven birthday website — a cinematic "chapters" experience (story, timeline, reasons, gallery, voice message, gift, cake, ending) instead of a static card. Built as a fully reusable template: every word of text, every photo, and every audio file is swapped through a single JSON file — no code editing required to make it your own.
+An interactive, scroll-driven birthday website — a cinematic "chapters" experience (story, timeline, reasons, voice message, gift, cake, ending) instead of a static card. Built as a fully reusable template: every word of text, every photo, and every audio file is swapped through a single JSON file — no code editing required to make it your own.
 
 **Live building blocks**: floating hearts/butterflies/sparkles background, a gift box that pops open into a hand-typed letter, a real photo cake with candles you can blow out via microphone (or a button), a hidden Konami-code easter egg, moon/heart tap-to-reveal secret notes, and a persistent ambient music player that ducks automatically when a voice message plays.
 
@@ -30,7 +30,7 @@ npm run start   # serve the production build
 
 ## How it works
 
-Every section is its own component in `components/` (`StorySection`, `Timeline`, `ReasonsSection`, `PolaroidGallery`, `VoiceMessage`, `GiftBox`, `CakeSection`, `Ending`, plus ambient decoration components like `FloatingHearts`/`AmbientBackground`/`EasterEggs`). Each component imports `data/content.json` and renders whichever slice of it belongs to that chapter — no component hardcodes any copy, image path, or audio path.
+Every section is its own component in `components/` (`StorySection`, `Timeline`, `ReasonsSection`, `VoiceMessage`, `GiftBox`, `CakeSection`, `Ending`, plus ambient decoration components like `FloatingHearts`/`AmbientBackground`/`EasterEggs`). Each component imports `data/content.json` and renders whichever slice of it belongs to that chapter — no component hardcodes any copy, image path, or audio path.
 
 `app/(protected)/page.tsx` assembles the chapters in order and drives the intro loading sequence. `context/InteractiveProvider.tsx` owns shared state that multiple components need — confetti, the Konami-code listener, and the single ambient-audio `Howl` instance (so the hero panel and the floating mini-player button both control the same track, and voice-message playback can duck/restore it).
 
@@ -45,16 +45,15 @@ This is the only file you need to touch to make the site yours. Structure:
 | `site` | Page `<title>` / meta description |
 | `hero` | Loading sequence messages, title, subtitle, background music (`audioSrc`) |
 | `story` | "Our Story" chapter — add as many `slides` as you want |
-| `timeline` | Dated milestones — add as many `entries` as you want, `photo` is optional (`null` to omit) |
+| `timeline` | Dated milestones — add as many text-only `entries` as you want |
 | `reasons` | Swipeable "reasons you're amazing" cards — add as many `items` as you want, `tag` is optional |
-| `gallery` | Swipeable photo carousel — add as many `photos` as you want |
 | `voice` | Voice-message chapter, including its own `audioSrc` |
 | `gift` | Gift-box chapter — `letterText` is what types out after the box opens (use `\n\n` for paragraph breaks) |
 | `cake` | Candle-blow chapter — `image` is the cake photo path |
 | `ending` | Final closing message |
 | `easterEggs` | Text shown by the hidden moon/heart taps |
 
-Every list (`slides`, `entries`, `items`, `photos`) is rendered by mapping over the array — there's no hardcoded limit, add as few or as many as you like.
+Every list (`slides`, `entries`, `items`) is rendered by mapping over the array — there's no hardcoded limit, add as few or as many as you like.
 
 **Photos**: drop image files into `public/photos/` and point any `"src"`/`"photo"`/`"image"` field at `/photos/yourfile.jpg`.
 
