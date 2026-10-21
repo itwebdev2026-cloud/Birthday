@@ -45,7 +45,7 @@ This is the only file you need to touch to make the site yours. Structure:
 | `site` | Page `<title>` / meta description |
 | `hero` | Loading sequence messages, title, subtitle, background music (`audioSrc`) |
 | `story` | "Our Story" chapter — add as many `slides` as you want |
-| `timeline` | Dated milestones — add as many text-only `entries` as you want |
+| `timeline` | Story milestones — add as many text-only `entries` as you want |
 | `reasons` | Swipeable "reasons you're amazing" cards — add as many `items` as you want, `tag` is optional |
 | `voice` | Voice-message chapter, including its own `audioSrc` |
 | `gift` | Gift-box chapter — `letterText` is what types out after the box opens (use `\n\n` for paragraph breaks) |
